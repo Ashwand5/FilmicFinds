@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmicFinds</title>
+    <link rel="shortcut icon" href="{% static 'filmicfinds_logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="aos/aos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+
+<style>
+    body {
+        background: #000;
+        color: #fff;
+        margin: 0;
+        background-color: #000;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),  url("{% static 'image.jpg' %}");
+    
+        background-size: cover;
+        background-position: top;
+        padding: 10px 8%;
+        position: relative;
+    }
+    
+
+    .content_img{
+        position: relative;
+        width: 200px;
+        height: 200px;
+        float: left;
+        margin-right: 10px;
+        
+    }
+    
+   
+    .content_img div{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: black;
+        color: white;
+        margin-bottom: 5px;
+        font-family: sans-serif;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: visibility 0s, opacity 0.5s linear; 
+        transition: visibility 0s, opacity 0.5s linear;
+    }
+    
+   
+    .content_img:hover{
+        cursor: pointer;
+    }
+    
+    .content_img:hover div{
+        width: 150px;
+        padding: 8px 15px;
+        visibility: visible;
+        opacity: 0.7; 
+    }
+
+    
+</style>
+
+<body style="background-color: rgb(0, 0, 0);">
+    <div class="header">
+        <div class="header-background"></div>
+        <div class="header-image"></div>    
+    <nav>
+        <img src="{% static 'filmicfinds_name.png' %}" class="logo" alt="logo">
+        <div>
+            <!-- <button class="lang-btn">English  <img src="images/down-icon.png" alt=""> </button> -->
+            <button><a id="abc" href="{% url 'login' %}">Log Out</a></button>
+        </div>
+    </nav>
+    <form action="" method='GET'>
+    <div class="wrapper">
+        <h1>Recommendation by filter</h1>
+        <p>Discover movies, TV shows, and more with personalized recommendations.</p>
+
+        
+            <div class="mb-3 question" id="question1">
+                <label for="genre" class="form-label">1. Select your genre:</label>
+                <select class="form-select" id="genre" name="genre">
+                    <option value="Action">Action</option>
+<option value="Adventure">Adventure</option>
+<option value="Comedy">Comedy</option>
+<option value="Crime">Crime</option>
+<option value="Drama">Drama</option>
+<option value="Fantasy">Fantasy</option>
+<option value="Historical">Historical</option>
+<option value="Mystery">Mystery</option>
+<option value="ScienceFiction">Science Fiction</option>
+<option value="Animation">Animation</option>
+<option value="Documentary">Documentary</option>
+<option value="Family">Family</option>
+<option value="TVMovie">TVMovie</option>
+<option value="War">War</option>
+<option value="Western">Western</option>
+<option value="Biography">Biography</option>
+<option value="Sports">Sports</option>
+<option value="Music">Music</option>
+<option value="Horror">Horror</option>
+<option value="Romance">Romance</option>
+<option value="Thriller">Thriller</option>
+
+                   
+                </select>
+                <br>
+                <button type="button" class="btn-secondary previous-question">Previous</button>
+                <button type="button" class="btn-primary next-question">Next</button>
+            </div>
+
+            <div class="mb-3 question" id="question2" style="display: none;">
+                <label for="language" class="form-label">2. Enter the language:</label>
+                <input type="text" class="form-control" id="language"placeholder="Enter language">
+                <br>
+                <button type="button" class="btn-secondary previous-question">Previous</button>
+                <button type="button" class="btn-primary next-question">Next</button>
+            </div>
+
+            <div class="mb-3 question" id="question3" style="display: none;">
+                <label for="year" class="form-label">3. Select the year range:</label>
+                <select class="form-select" id="year" >
+                    <option value="2000-2020">2000-2020</option>
+                    <option value="1990-2000">1990-2000</option>
+                    <!-- Add more year range options as needed -->
+                </select>
+                <br>
+                <button type="button" class="btn-secondary previous-question">Previous</button>
+                <button type="button" class="btn-primary next-question">Next</button>
+            </div>
+
+            <div class="mb-3 question" id="question4" style="display: none;">
+                <label for="rating" class="form-label">4. Select the rating:</label>
+                <select class="form-select" id="rating" >
+                    <option value="1-3">1-3</option>
+                    <option value="3-5">3-5</option>
+                    <option value="5-7">5-7</option>
+                    <option value="7-10">7-10</option>
+                    <!-- Add more rating options as needed -->
+                    
+                </select>
+                <br>
+                <button type="button" class="btn-secondary previous-question">Previous</button>
+                <button type="submit" class="btn-primary next-question" style="margin-right: 0px;">Get Recommendations</button>
+            </div>
+        </form>
+    </div>
+   </div>
+
+
+   <div class="row">
+    <h2>M o v i e s</h2>
+    <div class="row__posts">
+        <!-- Use a for loop to generate movie elements dynamically -->
+        {% for tit,pos in movies_data %}<div class="content">
+        <div class="content_img">
+            <img src="{{ pos }}" alt="" class="row__post row_postL" style="width:100%">
+            <div>{{ tit }}</div>
+
+        </div>
+    </div>
+        {% endfor %}
+
+       
+    </div>
+</div>
+
+
+
+<div class="movie-modal">
+    <div class="movie-details">
+        <span class="close">&times;</span>
+        <img class="movie-detail-image" src="" alt="Movie Detail">
+        <h2 class="movie-title"></h2>
+        <p class="movie-year"></p>
+        <p class="movie-rating"></p>
+        <p class="movie-description"></p>
+    </div>
+</div>
+
+   <br><br><br><br><br><br><br><br>
+
+
+   <div class="wrapper" >
+    <h1>Recommendation by movies</h1>
+    <p>Discover movies, TV shows, and more with personalized recommendations.</p>
+    
+        <!-- Your existing questions -->
+
+        <!-- New question for entering the movie name -->
+        <!-- Inside your HTML template -->
+        <form action="" method='GET'>
+      
+    <div class="mb-3 question" id="questionMovieName">
+        <label for="movie_select" class="form-label">Select a movie:</label>
+        <select class="form-select" id="movie_select" name="movie_select" required>
+            <option value="" selected disabled>Type or select a movie from the dropdown</option>
+         {% for movie in movie_list %}
+                <option value="{{ movie.title }}">{{ movie.title }}</option>
+            {% endfor %} 
+    
+
+        </select>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+        
+
+        <!-- Continue with your existing questions and submit button -->
+ 
+</div>
+    
+
+</div>
+
+
+
+<div class="row">
+    <h2>Movies</h2>
+    <div class="row__posts">
+        <!-- Use a for loop to generate movie elements dynamically -->
+        {% for poster_url in recommended_movie_posters %}
+        <div class="row__postL" onclick="showMovieDetails(1)">
+            <img src="{{ poster_url }}" alt="Movie Poster" class="row__post row_postL">
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+
+
+
+
+    <div id="movie-modal" class="movie-modal">
+        <div class="movie-details">
+            <span class="close" onclick="closeMovieDetails()">&times;</span>
+            <img id="movie-detail-image" src="" alt="Movie Detail" class="movie-image">
+            <h2 id="movie-title" class="movie-name"></h2>
+            <!-- Add new elements for additional movie details -->
+            <p id="movie-year" class="movie-year"></p>
+            <p id="movie-rating" class="movie-rating"></p>
+            <p id="movie-description" class="movie-description"></p>
+        </div>
+    </div>
+
+
+    <br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+      AOS.init();
+   </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const nextButtons = document.querySelectorAll(".next-question");
+    const prevButtons = document.querySelectorAll(".previous-question"); // Add this line
+    const questions = document.querySelectorAll(".question");
+
+    let currentQuestion = 0;
+
+    nextButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            questions[currentQuestion].style.display = "none";
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                questions[currentQuestion].style.display = "block";
+            } else {
+                // Submit the form or perform any final actions
+                document.getElementById("recommendationForm").submit();
+            }
+        });
+    });
+
+    prevButtons.forEach(button => { // Add this block
+        button.addEventListener("click", () => {
+            if (currentQuestion > 0) {
+                questions[currentQuestion].style.display = "none";
+                currentQuestion--;
+                questions[currentQuestion].style.display = "block";
+            }
+        });
+    });
+});
+</script>
+
+
+</html>

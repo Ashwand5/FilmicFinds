@@ -1,0 +1,99 @@
+    <!DOCTYPE html>
+    {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmicFinds - Sign Up</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href="{% static 'filmicfinds_logo.png' %}" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+
+    body {
+        background: #000;
+        color: #fff;
+        margin: 0;
+        background-color: #000;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),  url("{% static 'image.jpg' %}");
+    
+        background-size: cover;
+        background-position: top;
+        padding: 10px 8%;
+        position: relative;
+    }
+
+</style>
+<body>
+    <div class="banner">
+        <a href="main.html">
+            <img class="netflix" src="{% static 'filmicfinds_name.png' %}" alt="Netflix Logo">
+        </a>
+    </div>
+   
+    <!-- <div id="video-container">
+        <video id="background-video" autoplay >
+            <source src="C:\Users\ashwa\Downloads\netflix_final_copy.mp4" type="video/mp4">
+        </video>
+    </div> -->
+
+    <main>
+        <div id="netflix-logo">
+            <img src="{% static 'filmicfinds_name.png' %}">
+        </div>
+
+        <div id="content">
+            <div class="pics">
+                <div class="wrapper">
+                    <form action="" method='POST'>
+                        {% csrf_token %}
+                        <h1>Sign Up</h1>
+                        
+                        <div class="input-box" id="input1">
+                            <input type="text" name='username' required>
+                            <label>Username</label>
+                        </div>
+                        
+                        <div class="input-box" id="input2">
+                            <input type="email" name='email' required>
+                            <label>Email</label>
+                        </div>
+                        
+                        <div class="input-box" id="input3">
+                            <input type="tel" name='phoneno' required>
+                            <label>Phone</label>
+                        </div>
+                        
+                        <div class="input-box" id="input4">
+                            <input type="password" name='password' required>
+                            <label>Password</label>
+                        </div>
+                        
+                        <div class="input-box" id="input5">
+                            <input type="password" name='confirmpass' required>
+                            <label>Confirm Password</label>
+                        </div>
+
+                        <button type="submit" class="btn">Sign Up</button>
+                        <div class="register-link">
+                        <div class="existing-account">
+                            <p><br>Already have an account? <a href="{% url 'login' %}">Sign in</a></p >
+                        </div>
+
+                        <div class="register">
+                            <p>This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#">Learn more.</a></p>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+<script src="./script.js"></script>
+
+</html>
